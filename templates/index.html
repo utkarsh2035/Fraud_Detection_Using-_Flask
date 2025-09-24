@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fraud Detection App</title>
+  <!-- Bootstrap (light theme) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { font-family: "Segoe UI", sans-serif; }
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button {
+      opacity: 1; /* show + / - buttons */
+    }
+    .result-box {
+      transition: transform 0.2s ease;
+    }
+    .result-box:hover {
+      transform: scale(1.03);
+    }
+  </style>
+</head>
+<body class="bg-light text-dark">
+
+<div class="container py-5">
+  <h2 class="text-center mb-4 fw-bold">💳 Evaluate a Financial Transaction for Fraud Risk</h2>
+
+  <form method="POST" class="row g-3">
+
+    <!-- Transaction Amount -->
+    <div class="col-12">
+      <label class="form-label">Transaction Amount</label>
+      <input type="number" step="0.01" class="form-control" name="amount" value="50000.00" required>
+    </div>
+
+    <!-- Sender Old Balance -->
+    <div class="col-12">
+      <label class="form-label">Sender Old Balance</label>
+      <input type="number" step="0.01" class="form-control" name="oldbalanceOrg" value="50000.00" required>
+    </div>
+
+    <!-- Sender New Balance -->
+    <div class="col-12">
+      <label class="form-label">Sender New Balance</label>
+      <input type="number" step="0.01" class="form-control" name="newbalanceOrig" value="0.00" required>
+    </div>
+
+    <!-- Receiver Old Balance -->
+    <div class="col-12">
+      <label class="form-label">Receiver Old Balance</label>
+      <input type="number" step="0.01" class="form-control" name="oldbalanceDest" value="0.00" required>
+    </div>
+
+    <!-- Receiver New Balance -->
+    <div class="col-12">
+      <label class="form-label">Receiver New Balance</label>
+      <input type="number" step="0.01" class="form-control" name="newbalanceDest" value="50000.00" required>
+    </div>
+
+    <!-- Transaction Step -->
+    <div class="col-12">
+      <label class="form-label">Transaction Step</label>
+      <input type="number" min="1" step="1" class="form-control" name="step" value="1" required>
+    </div>
+
+    <!-- Transaction Type -->
+    <div class="col-12">
+      <label class="form-label">Transaction Type</label>
+      <select class="form-select" name="type_input" required>
+        <option value="CASH_IN" selected>CASH_IN</option>
+        <option value="CASH_OUT">CASH_OUT</option>
+        <option value="DEBIT">DEBIT</option>
+        <option value="PAYMENT">PAYMENT</option>
+        <option value="TRANSFER">TRANSFER</option>
+      </select>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="col-12 d-grid">
+      <button type="submit" class="btn btn-primary btn-lg rounded-4">🔍 Predict</button>
+    </div>
+  </form>
+
+  <!-- Result Display -->
+  {% if result %}
+  <div class="mt-4 p-4 rounded-4 text-center result-box 
+       {% if 'Safe' in result %}bg-success text-white
+       {% elif 'Suspicious' in result %}bg-warning text-dark
+       {% else %}bg-danger text-white{% endif %}">
+    <h4>{{ result }}</h4>
+    <p class="mb-0">Probability: <strong>{{ probability }}</strong></p>
+  </div>
+  {% endif %}
+
+</div>
+
+</body>
+</html>

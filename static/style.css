@@ -1,0 +1,11 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+}
+
+.result-box {
+  transition: transform 0.2s ease;
+}
+
+.result-box:hover {
+  transform: scale(1.03);
+}
