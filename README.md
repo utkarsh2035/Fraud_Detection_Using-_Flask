@@ -56,7 +56,7 @@ Fraud in digital transactions causes significant financial loss globally. This t
 
 | Screenshot |
 |------------|
-| ![WebApp Screenshot](https://github.com/utkarsh2035/Fraud-Detection-WebApp/raw/main/Fraud%20Detection%20System.png) |
+| ![WebApp Screenshot](https://github.com/utkarsh2035/Fraud_Detection_Using-_Flask/blob/main/Fraud_Detection.png) |
 
 - 🧾 **Form Input** — Enter transaction step, amount, balances, and type  
 - ⚙️ **XGBoost Classifier** — Provides fraud probability  
